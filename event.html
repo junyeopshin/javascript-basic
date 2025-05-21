@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이벤트</title>
+  </head>
+  <body>
+    <label for="input1">change 이벤트 핸들러</label>
+    <input type="text" id="input1" onchange="handleChange(event)" />
+    <br /><br />
+    <label for="input2">input 이벤트 리스너</label>
+    <input type="text" id="input2" /> <br /><br />
+
+    <h3>change 이벤트 리스너</h3>
+    <label for="check1">체크1</label>
+    <input type="checkbox" id="check1" value="check1" />
+    <label for="check2">체크2</label>
+    <input type="checkbox" id="check2" value="check2" />
+    <label for="check3">체크3</label>
+    <input type="checkbox" id="check3" value="check3" /> <br /><br />
+
+    <select name="" id="select">
+      <option value="f1">FAMLISITE-1</option>
+      <option value="f2">FAMLISITE-2</option>
+      <option value="f3">FAMLISITE-3</option>
+    </select>
+
+    <!-- js -->
+    <script>
+      // change 이벤트 핸들러
+      function handleChange(e) {
+        const inputValue = e.target.value;
+        console.log(inputValue);
+      }
+
+      // input 이벤트 리스너
+      document.querySelector("#input2").addEventListener("input", (e) => {
+        const value = e.target.value;
+        console.log(value);
+      });
+
+      document
+        .querySelectorAll("input[type='checkbox']")
+        .forEach((checkbox) => {
+          checkbox.addEventListener("change", checkedValue);
+        });
+
+      function checkedValue(e) {
+        console.log(e.target.value);
+      }
+
+      document.querySelector("#select").addEventListener("change", (e) => {
+        console.log(e.target.value);
+      });
+    </script>
+  </body>
+</html>

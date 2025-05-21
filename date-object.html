@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date 객체</title>
+  </head>
+  <body>
+    <div id="clock">00:00:00</div>
+
+    <!-- js -->
+    <script>
+      // 현재 날짜와 시간
+      const now = new Date();
+      // 날짜 가져오기
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1;
+      const date = now.getDate();
+      // 시간 가져오기
+      const hour = now.getHours();
+      const min = now.getMinutes();
+      const sec = now.getSeconds();
+      // 날짜와 시간 설정하기
+      // 연, 월, 일, 시, 분, 초
+      const a = new Date(2025, 11, 25, 10, 30, 25);
+      // 연, 월, 일, 시, 분
+      const b = new Date(1998, 8, 13, 18, 20);
+      // 연, 월, 일
+      const c = new Date(2000, 1, 20);
+
+      let text = "";
+      text += `${year}년 ${month}월 ${date}일 <br>`;
+      text += `${hour}시 ${min}분 ${sec}초 <br>`;
+      text += `${a} <br>`;
+      text += `${b} <br>`;
+      text += `${c} <br>`;
+
+      const updateclock = () => {
+        // 현재 날짜와 시간을 가지는 Date 객체 생성
+        const clockNow = new Date();
+        // 시, 분, 초 값을 추출
+        let hours = clockNow.getHours();
+        let minutes = clockNow.getMinutes();
+        let seconds = clockNow.getSeconds();
+
+        // if (minutes < 10) {
+        //   minutes = `0${minutes}`;
+        // } else {
+        //   minutes;
+        // }
+
+        hours = hours < 10 ? `0${hours}` : hours;
+        minutes = minutes < 10 ? `0${minutes}` : minutes;
+        seconds = seconds < 10 ? `0${seconds}` : seconds;
+
+        const timeString = `${hours}:${minutes}:${seconds}`;
+        document.querySelector("#clock").innerHTML = timeString;
+      };
+      updateclock();
+      setInterval(updateclock, 1000);
+
+      //   document.querySelector("#clock").innerHTML = text;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>문서 객체 모델 DOM</title>
+  </head>
+  <body>
+    <div id="box">
+      <p id="p1">단락1</p>
+      <p id="p2">단락2</p>
+      <p id="p3">단락3</p>
+    </div>
+
+    <!-- js -->
+    <script>
+      const pElement = document.createElement("p");
+      const textNode = document.createTextNode("새로운 단락!");
+      pElement.appendChild(textNode);
+
+      const p1 = document.querySelector("#p1");
+      const box = document.querySelector("#box");
+
+      box.replaceChild(pElement, p1);
+    </script>
+  </body>
+</html>

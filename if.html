@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>조건문 if~</title>
+  </head>
+  <body>
+    <h1></h1>
+
+    <!-- js -->
+    <script>
+      // 참, 거짓에 따라 특정 코드의 실행을 제어
+      // 1. if~ 구문
+      //   if (조건식) {
+      //     문장;
+      //   }
+      // 2. if~, else
+      // 3. if~, else if~, else
+      // 웹 사이트 관리자는 아이디(id)가 admin이거나 레벨(level)이 1인 경우라고 가정
+      // 관리자인 경우 "관리자입니다!"를 하면에 출력하는 프로그램
+      let userId; // id 변수 선언, undefined
+      let userLevel; // userLevel 변수 선언, undefined
+      const h1 = document.querySelector("h1");
+
+      userId = "admin";
+      userLevel = 1;
+
+      if (userId === "admin" && userLevel === 1) {
+        h1.textContent = "최고 관리자입니다!";
+      } else if (userId === "admin" || userLevel === 1) {
+        h1.textContent = "일반 관리자입니다!";
+      } else {
+        h1.textContent = "관리자가 아닙니다!";
+      }
+    </script>
+  </body>
+</html>

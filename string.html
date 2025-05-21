@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>문자열 string</title>
+  </head>
+  <body>
+    <script>
+      const text1 = "사과";
+      const text2 = "오 렌 지";
+      console.log("안녕!");
+      console.log(text1);
+      console.log(text2);
+      console.log("안녕", text1, text2);
+      console.log(text1.length); // text1의 길이
+      console.log(text2.length); // text2의 길이(공백포함)
+
+      const text3 = '내 이름은 "홍길동"입니다.'; // 따옴표를 쓰고 싶을때 ??? \"??\" ??? 로 사용
+      console.log(text3);
+
+      const userName = "홍길동";
+      const age = 30;
+      const text4 = "이름: " + userName + ", 나이: " + age; // 연산자 사용. li의 갯수가 많아지면 어려움.
+      const text5 = `이름: ${userName}, 나이: ${age}`; // (` 백틱)
+
+      console.log(text4);
+      document.write(text4 + "<br>"); // 이름: 홍길동, 나이: 30
+      document.write(text5);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>function 함수</title>
+  </head>
+  <body>
+    <!-- JS 교재 86p에 해당하는 내용 -->
+    <script>
+      // 함수란?
+      // 특정 작업을 여러 번 반복해야 하는 경우
+      // 해당 작업을 재사용 가능한 구조로 만들게 되는데 이 때 사용하는 것이 함수
+
+      // 함수 호출
+      const result = sum();
+      console.log(result);
+
+      // 함수 선언식, 함수 정의
+      // 호이스팅 : 함수 정의가 먼저 이루어져야 하기 때문에 호이스팅 된다.
+      // 익명함수는 호이스팅이 안된다.
+      function sum() {
+        // console.log("더하기 함수");
+        return 1 + 2; // sum 함수는 1 + 2를 함수를 호출한 곳에 반환
+      }
+
+      // 함수의 매개변수(parameter)와 인수(argument)
+      // 함수 정의
+      function sum2(a, b = 10) {
+        return a + b;
+      }
+
+      // 함수 호출
+      // 인수자리에 넣는 함수를 콜백함수라고 한다.
+      const sum2Result = sum2(15, 17);
+      console.log(sum2Result);
+
+      // 함수 표현식
+      // 함수 표현식은 변수에 함수를 할당해서 사용하는 방식
+      // 익명 함수
+      // const sum3 = function (a, b) {
+      //  return a + b;
+      // };
+
+      // 화살표 함수
+      const sum3 = (a, b) => {
+        return a + b;
+      };
+
+      const sum3Result = sum3(17, 588925135);
+      console.log(sum3Result);
+
+      function sayHello(callBack) {
+        callBack();
+        console.log("콜백 함수가 실행되었습니다!");
+      }
+      sayHello(() => {
+        console.log("안녕!");
+      });
+
+      function fnc() {
+        if (true) {
+          let x = 10; // 변수 x는 if문 내, 즉 블록 내부에서 선언
+        }
+        console.log(x); // 블록 외부에서는 변수 x에 접근하지 못함
+      }
+      fnc();
+    </script>
+  </body>
+</html>

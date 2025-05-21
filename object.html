@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>객체 Object</title>
+  </head>
+  <body>
+    <p id="show"></p>
+    <!-- js -->
+    <script>
+      const dog = {
+        name: "댕댕이",
+        species: "믹스",
+        color: "알록달록",
+        age: 3,
+
+        // 메서드 intro
+        // intro: function () {},
+        intro() {
+          return `나의 이름은 ${this.name}이고, 나이는 ${this.age}살입니다.`;
+        },
+      };
+
+      dog.getColor = function () {
+        return `색깔은 ${this.color}입니다.`;
+      };
+      // document.querySelector("#show").innerHTML = dog.intro();
+      document.querySelector("#show").innerHTML = dog.getColor();
+    </script>
+  </body>
+</html>

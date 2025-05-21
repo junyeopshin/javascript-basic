@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>버튼 상태 변경</title>
+  </head>
+  <body>
+    <form action="/">
+      <label><input type="checkbox" id="check" />이용 약관에 동의</label>
+      <button id="btn" type="button" disabled>전송</button>
+    </form>
+    <!-- js -->
+    <script>
+      const checkbox = document.querySelector("#check");
+      const btn = document.querySelector("#btn");
+      let isAgreed = false; // false
+
+      checkbox.addEventListener("input", () => {
+        console.log("input 이벤트 발생");
+        if (isAgreed) {
+          btn.disabled = true; // 버튼 비활성화
+          isAgreed = false;
+          console.log("체크해재");
+        } else {
+          btn.disabled = false; // 버튼 활성화
+          isAgreed = true;
+          console.log("체크");
+        }
+      });
+    </script>
+  </body>
+</html>

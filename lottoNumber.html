@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>2025 팬톤컬러 로또번호 추출기</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --mocha-mousse: #a47864;
+        --cannoli-cream: #f3ede7;
+        --cream-tan: #e6d3c6;
+        --sirocco: #bfa094;
+        --chanterelle: #bfa48a;
+        --baltic-amber: #a15a3b;
+        --chocolate-martini: #6d4c3d;
+        --subtle-blue: #b6c7d1;
+        --subtle-gold: #e0b96a;
+        --subtle-gray: #e0e0e0;
+      }
+      body {
+        background: linear-gradient(
+          135deg,
+          var(--cannoli-cream) 0%,
+          var(--cream-tan) 100%
+        );
+        min-height: 100vh;
+        margin: 0;
+        font-family: "Montserrat", "Pretendard", sans-serif;
+        color: var(--mocha-mousse);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+      }
+      .main-title-box {
+        margin-top: 48px;
+        margin-bottom: 36px;
+        padding: 24px 36px;
+        background: rgba(255, 255, 255, 0.68);
+        border-radius: 28px;
+        box-shadow: 0 8px 32px 0 #a4786433, 0 1.5px 6px #fff9;
+        backdrop-filter: blur(7px);
+        display: inline-block;
+        position: relative;
+      }
+      .main-title-box::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 28px;
+        box-shadow: 0 0 0 6px rgba(164, 120, 100, 0.08);
+        z-index: 0;
+        pointer-events: none;
+      }
+      h1 {
+        font-size: clamp(2.2rem, 6vw, 3.6rem);
+        font-weight: 900;
+        letter-spacing: -1px;
+        color: var(--mocha-mousse);
+        background: linear-gradient(
+          90deg,
+          var(--mocha-mousse) 60%,
+          var(--subtle-gold) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+      .lotto-btn {
+        background: linear-gradient(
+          90deg,
+          var(--mocha-mousse) 0%,
+          var(--subtle-gold) 100%
+        );
+        color: #fff;
+        border: none;
+        border-radius: 22px 44px 22px 44px;
+        padding: 18px 48px;
+        font-size: 1.3em;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: 0 8px 32px var(--mocha-mousse, #a47864) 33, 0 2px 6px #0002;
+        margin-bottom: 40px;
+        margin-top: 12px;
+        letter-spacing: 2px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.13s, box-shadow 0.13s;
+        outline: none;
+        z-index: 2;
+      }
+      .lotto-btn:hover {
+        transform: scale(1.04) rotate(-1deg);
+        box-shadow: 0 16px 48px var(--baltic-amber) 33, 0 2px 12px #0002;
+        background: linear-gradient(
+          90deg,
+          var(--baltic-amber) 0%,
+          var(--subtle-gold) 100%
+        );
+      }
+      #show {
+        width: 440px;
+        max-width: 98vw;
+        margin: 0 auto 40px auto;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 20px;
+      }
+      .lotto-card {
+        background: rgba(164, 120, 100, 0.12);
+        border-radius: 24px 8px 24px 8px;
+        box-shadow: 0 4px 24px #a4786433, 0 1px 2px #e6d3c633;
+        padding: 24px 22px 16px 22px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        position: relative;
+        backdrop-filter: blur(6px);
+        animation: cardIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      }
+      @keyframes cardIn {
+        from {
+          opacity: 0;
+          transform: scale(0.93) translateY(32px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+      .lotto-round {
+        font-size: 1.1em;
+        font-weight: 700;
+        color: var(--baltic-amber);
+        margin-right: 8px;
+        letter-spacing: 1px;
+        min-width: 55px;
+        text-shadow: 0 1px 4px var(--cannoli-cream) 33;
+      }
+      .lotto-balls {
+        display: flex;
+        gap: 8px;
+      }
+      .lotto-ball {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        font-weight: 900;
+        font-size: 1.13em;
+        box-shadow: 0 2px 10px #a4786444;
+        border: 2px solid var(--cream-tan);
+        background: #fff;
+        color: var(--mocha-mousse);
+        transition: transform 0.09s, background 0.2s;
+        user-select: none;
+        position: relative;
+        z-index: 1;
+        opacity: 0;
+        animation: popIn 0.5s forwards;
+      }
+      @keyframes popIn {
+        from {
+          opacity: 0;
+          transform: scale(0.7);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .lotto-ball.visible {
+        opacity: 1;
+        animation: popIn 0.5s forwards;
+      }
+      /* Mocha Mousse 기반 컬러볼 */
+      .ball-mocha {
+        background: linear-gradient(145deg, #a47864 60%, #bfa094 100%);
+        color: #fff;
+      }
+      .ball-cream {
+        background: linear-gradient(145deg, #f3ede7 60%, #e6d3c6 100%);
+        color: var(--mocha-mousse);
+      }
+      .ball-amber {
+        background: linear-gradient(145deg, #ffe0b2 60%, #a15a3b 100%);
+        color: #7d4a2a;
+      }
+      .ball-blue {
+        background: linear-gradient(145deg, #e3f2fd 60%, #b6c7d1 100%);
+        color: #234;
+      }
+      .ball-gray {
+        background: linear-gradient(145deg, #ececec 60%, #e0e0e0 100%);
+        color: #333;
+      }
+      .ball-gold {
+        background: linear-gradient(145deg, #fffde7 60%, #e0b96a 100%);
+        color: #a47864;
+      }
+      /* 반응형 */
+      @media (max-width: 600px) {
+        #show {
+          width: 99vw;
+        }
+        .main-title-box {
+          padding: 13px 4vw;
+        }
+        .lotto-card {
+          padding: 11px 4vw 10px 4vw;
+        }
+        .lotto-ball {
+          width: 28px;
+          height: 28px;
+          font-size: 0.98em;
+        }
+        .lotto-round {
+          min-width: 38px;
+        }
+        h1 {
+          font-size: clamp(1.3rem, 7vw, 2.2rem);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-title-box">
+      <h1>2025 팬톤컬러<br />로또번호 추출기</h1>
+    </div>
+    <button class="lotto-btn" onclick="showLotto()" id="drawBtn">
+      로또번호 뽑기
+    </button>
+    <div id="show"></div>
+    <script>
+      function getBallClass(num) {
+        if (num <= 7) return "ball-cream";
+        if (num <= 14) return "ball-gold";
+        if (num <= 21) return "ball-blue";
+        if (num <= 28) return "ball-mocha";
+        if (num <= 36) return "ball-amber";
+        if (num <= 45) return "ball-gray";
+        return "";
+      }
+
+      const history = [];
+
+      function getNumbers() {
+        const numbers = [];
+        while (numbers.length < 6) {
+          const randomNumber = Math.floor(Math.random() * 45) + 1;
+          if (!numbers.includes(randomNumber)) {
+            numbers.push(randomNumber);
+          }
+        }
+        return numbers.sort((a, b) => a - b);
+      }
+
+      // 번호를 한 개씩 보여주는 함수
+      function showLotto() {
+        const result = getNumbers();
+        history.push(result);
+
+        // 카드 구조 미리 생성 (번호는 비워둠)
+        const showDiv = document.querySelector("#show");
+        const round = history.length;
+        const card = document.createElement("div");
+        card.className = "lotto-card";
+        card.innerHTML = `
+        <span class="lotto-round">[${round}회]</span>
+        <div class="lotto-balls"></div>
+      `;
+        showDiv.prepend(card);
+
+        const ballsDiv = card.querySelector(".lotto-balls");
+
+        // 버튼 비활성화(중복 클릭 방지)
+        const btn = document.getElementById("drawBtn");
+        btn.disabled = true;
+        btn.style.opacity = "0.5";
+        btn.style.cursor = "not-allowed";
+
+        // 번호를 한 개씩 0.3초 간격으로 추가
+        let i = 0;
+        function showNextBall() {
+          if (i < result.length) {
+            const n = result[i];
+            const span = document.createElement("span");
+            span.className = `lotto-ball ${getBallClass(n)}`;
+            span.textContent = n;
+            setTimeout(() => {
+              span.classList.add("visible");
+            }, 30);
+            ballsDiv.appendChild(span);
+            i++;
+            setTimeout(showNextBall, 300);
+          } else {
+            // 버튼 다시 활성화
+            btn.disabled = false;
+            btn.style.opacity = "1";
+            btn.style.cursor = "";
+          }
+        }
+        showNextBall();
+      }
+    </script>
+  </body>
+</html>

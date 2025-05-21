@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배열 array</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      #cardWrap {
+        position: relative;
+        max-width: 1200px;
+        margin: 50px auto;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .card {
+        position: relative;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .card a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px 10px;
+        border-radius: 8px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        background-color: #f5f5f5;
+        color: #333;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cardWrap">
+      <div class="card">
+        <a href="#">작업물</a>
+      </div>
+    </div>
+    <!-- js -->
+    <script>
+      const works = [
+        "상세페이지",
+        "웹사이트리디자인",
+        "클론코딩",
+        "포트폴리오사이트",
+        "클론코딩",
+        "노션포트폴리오",
+      ];
+
+      let htmlTags = "";
+
+      const personalWorks = works.map((work, index) => {
+        const card = `
+        <div class="card">
+        <a href="#">${index}: ${work}</a>
+        </div>`;
+
+        return card;
+      });
+
+      htmlTags = personalWorks.join("");
+
+      document.querySelector("#cardWrap").innerHTML = htmlTags;
+    </script>
+  </body>
+</html>

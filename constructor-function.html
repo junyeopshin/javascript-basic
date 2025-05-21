@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>생성자함수 constructor function</title>
+  </head>
+  <body>
+    <ul id="show"></ul>
+    <!-- js -->
+    <script>
+      // 생성자 함수의 객체 생성 예시
+      // 1. 생성자 함수 Member는 세 개의 매개변수 userId, userName, age를 가진다
+      //   function Member(userId, userName, age) {
+      //     // 키워드 this는 생성자 함수로 생성되는 객체 자신을 의미
+      //     this.userId = userId;
+      //     this.userName = userName;
+      //     this.age = age;
+      //   }
+
+      //   // 객체 단위로 묶어서 전달
+      //   function Member(options) {
+      //     // 키워드 this는 생성자 함수로 생성되는 객체 자신을 의미
+      //     this.userId = options.userId;
+      //     this.userName = options.userName;
+      //     this.age = options.age;
+      //   }
+
+      // 구조 분해 할당
+      function Member({ userId, userName, age }) {
+        // 키워드 this는 생성자 함수로 생성되는 객체 자신을 의미
+        this.userId = userId;
+        this.userName = userName;
+        this.age = age;
+        // 생성자 함수의 메서드
+        this.getUserName = function () {
+          return `나의 이름은 ${this.userName}입니다!`;
+        };
+      }
+
+      // 2. new 연산자를 이용하여 생성자 함수 호출 시 인수를 전달받는데 사용한다
+      const member1 = new Member("kdhong", "홍길동", 25);
+      const member2 = new Member({
+        userId: "kdpark",
+        userName: "박길동",
+        age: 30,
+      });
+
+      let text = "";
+      text += member2.userId;
+      text += member2.userName;
+      text += member2.age;
+      text += member2.getUserName();
+      //   for (property in member1) {
+      //     text += `<li>${member2[property]}</li>`;
+      //   }
+      document.getElementById("show").innerHTML = text;
+    </script>
+  </body>
+</html>

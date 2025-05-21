@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Math 객체</title>
+  </head>
+  <body>
+    <div id="show"></div>
+    <!-- js -->
+    <script>
+      // 0 에서 1 사이의 무작위 값을 얻는데 사용
+      const a = Math.random();
+      const b = Math.random();
+
+      // 1에서 100 까지의 정수 무작위 숫자 하나를 반환
+      const c = Math.floor(Math.random() * 100 + 1);
+      const d = Math.floor(Math.random() * 100 + 1);
+
+      let text = "";
+      text += `${a} <br>`;
+      text += `${b} <br>`;
+      text += `${c} <br>`;
+      text += `${d} <br>`;
+
+      function getNumbers() {
+        // 1. 빈 배열
+        const numbers = [];
+        for (let i = 0; i < 6; ) {
+          const randomNumber = Math.floor(Math.random() * 45 + 1);
+          if (numbers.includes(randomNumber)) {
+          } else {
+            numbers.push(randomNumber);
+            i++;
+          }
+        }
+        return numbers;
+      }
+      const result = getNumbers();
+      text += `${result} <br>`;
+      document.querySelector("#show").innerHTML = text;
+    </script>
+  </body>
+</html>

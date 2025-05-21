@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>클래스</title>
+  </head>
+  <body>
+    <p id="show"></p>
+    <!-- js -->
+    <script>
+      //자바스크립트의 클래스
+      class Member {
+        // 1. 생성자 constructor 는 new 연산자에 의해 자동으로 호출
+        // 객체의 기본 상태를 설정하는 데 사용
+        constructor(userId, userName, age) {
+          this.userId = userId;
+          this.userName = userName;
+          this.age = age;
+        }
+        // 2. 클래스 메서드
+        getUserName() {
+          return `이름은 ${this.userName}입니다.`;
+        }
+      }
+
+      // 클래스 상속
+      class Student extends Member {
+        constructor(userId, userName, age, school) {
+          super(userId, userName, age);
+          this.schoool = school;
+        }
+        intro() {
+          return `${this.getUserName()} ${this.school} 학생입니다.`;
+        }
+      }
+
+      const member1 = new Member("kdhong", "홍길동", 30);
+      const student1 = new Student("kdkim", "김길동", 25, "그린컴퓨터학원");
+      let text = "";
+      text += `${member1.userId} <br>`;
+      text += `${member1.userName} <br>`;
+      text += `${member1.age} <br>`;
+      text += `${member1.getUserName()} <br>`;
+
+      document.querySelector("#show").innerHTML = student1.intro();
+    </script>
+  </body>
+</html>
