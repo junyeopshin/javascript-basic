@@ -1616,8 +1616,14 @@ box.replaceChild(pElement, p1);
 
 - scroll-amount.html
 
-## 15.3 데이터 다루기
+## 14.3 데이터 다루기
 
 - menu-list.html
 - css/menu-list.css
 - javascript/menuList.js
+
+## 14.4 애니메이션
+
+- animation.html
+- css/animation.css
+- javascript/animation.js
